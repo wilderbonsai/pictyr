@@ -38,12 +38,6 @@ module.exports = {
         // Url to query from
         url: "https://api.graph.cool/simple/v1/pictyr-dev",
       },
-    },
-    {
-      resolve: 'gatsby-plugin-page-transitions',
-      options: {
-        transitionTime: 500
-      }
     }
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
