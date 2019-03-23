@@ -1,0 +1,1 @@
+export const teal = '#00b5ad'

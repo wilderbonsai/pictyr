@@ -1,0 +1,78 @@
+{
+  "name": "gatsby-starter-default",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "@rebass/grid": "^6.0.0-7",
+    "emoji-strip": "^1.0.1",
+    "escape-string": "^1.0.2",
+    "formsy-react": "^1.1.5",
+    "formsy-semantic-ui-react": "^0.3.4",
+    "gatsby": "^2.1.37",
+    "gatsby-image": "^2.0.34",
+    "gatsby-plugin-manifest": "^2.0.24",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-page-transitions": "^1.0.7",
+    "gatsby-plugin-react-helmet": "^3.0.10",
+    "gatsby-plugin-resolve-src": "^2.0.0",
+    "gatsby-plugin-rollbar": "^1.0.0",
+    "gatsby-plugin-sharp": "^2.0.29",
+    "gatsby-plugin-styled-components": "^3.0.0-rc.5",
+    "gatsby-source-filesystem": "^2.0.27",
+    "gatsby-source-graphql": "^2.0.15",
+    "gatsby-transformer-sharp": "^2.1.17",
+    "graphql-request": "^1.8.2",
+    "instagram-api": "^1.0.3",
+    "pre-commit": "^1.2.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-dom-factories": "^1.0.2",
+    "react-easy-state": "^6.1.1",
+    "react-helmet": "^5.2.0",
+    "react-horizontal-scrolling-menu": "^0.5.6",
+    "react-icons": "^3.5.0",
+    "react-instagram-login": "^1.3.0",
+    "react-masonry-component": "^6.2.1",
+    "react-masonry-infinite": "^1.2.2",
+    "react-responsive-masonry": "^2.0.0",
+    "react-selectize": "^3.0.1",
+    "react-sizeme": "^2.5.2",
+    "react-stack-grid": "^0.7.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.86.0",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-google": "^0.10.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.16.4"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "rm -rf .cache; gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "pre-commit": {
+    "run": "lint:fix"
+  }
+}
