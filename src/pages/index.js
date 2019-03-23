@@ -18,12 +18,11 @@ import 'react-selectize/themes/index.css'
 
 const Landing = styled.div`
   color: white;
-  line-height:60px;
-
-  h1 {
-    font-size:60px;
-  }
-  font-size:60px;
+  margin-top:${({mobile}) => mobile ? '80px' : '60px'}
+  
+  font-size:${({mobile}) => mobile ? '40px' : '60px'}
+    line-height:${({mobile}) => mobile ? '40px' : '60px'}
+    
 `
 
 const StyledSelect = styled(SimpleSelect)`
@@ -42,7 +41,7 @@ const StyledSelect = styled(SimpleSelect)`
   }
   
   &&&& .react-selectize-placeholder {
-    line-height:90px
+    line-height:${({mobile}) => mobile ? '60px' : '90px'}
     color: #00b5ad !important;
     text-indent: 0px;
   }
@@ -78,13 +77,14 @@ const IndexPage = view(({data, size}) => {
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
 
-        <Landing>
+        <Landing mobile={(width < 550)}>
           <Container>
             <Grid stackable centered columns={2}>
               <Grid.Column>
               <ContentMargin>
                 Discover your <StyledSelect
                     options = {options}
+                    mobile={(width < 550)}
                     placeholder = "Ideal"
                     theme = "material" // can be one of "default" | "bootstrap3" | "material" | ...
                     transitionEnter = {true}
