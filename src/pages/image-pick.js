@@ -1,9 +1,8 @@
-import React from "react"
+import React, { Component } from "react"
 import { Link } from "gatsby"
 import { view } from 'react-easy-state'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import StackGrid from "react-stack-grid";
 import SelectableImage from 'components/Image/Selectable'
 import selectedImages from 'store/selectedImages'
 import sizeMe from 'react-sizeme';
@@ -13,41 +12,40 @@ import Text from 'components/Text'
 import { teal } from 'const/colors'
 import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+import Masonry from 'components/Masonry'
 
-const ImagePickPage = view(({data, size}) => {
-  const width = size.width
-  const images = data.images.allImages
-  console.log(selectedImages.images.length)
-  let colWidth = '25%';
-  if(width < 1300)  colWidth = '33%';
-  if(width < 900)  colWidth = '50%';
-  if(width < 550)  colWidth = '100%';
-  return (
-      <Layout>
-        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
-        <Container>
-          <h1>Step 1 of 3.<br/>Pick your favorites.</h1>
-          <h6>Displaying work of local photographers in <Text color={teal} underline pointer>Berlin</Text></h6>
-        </Container>
-        <ResponsiveMasonry
-            columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
-        >
+
+class ImagePickPage extends Component {
+
+  render() {
+    const { data, size } = this.props
+    const width = size.width
+    const images = data.images.allImages
+    console.log(selectedImages.images.length)
+    let colWidth = '25%';
+    if(width < 1300)  colWidth = '33%';
+    if(width < 900)  colWidth = '50%';
+    if(width < 550)  colWidth = '100%';
+    return (
+        <Layout>
+          <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
+          <Container>
+            <h1>Step 1 of 3.<br/>Pick your favorites.</h1>
+            <h6>Displaying work of local photographers in <Text color={teal} underline pointer>Berlin</Text></h6>
+          </Container>
           <Masonry
-              gutter="4px">
-          { images.map(image => <SelectableImage
-              url={image.url}
-              id={image.id}
-              userId={image.userId}
-          />)
-          })}
-        </Masonry>
-          </ResponsiveMasonry>
-        <Link to="/user-pick"><CenteredFixedButton disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton></Link>
-      </Layout>
-  )
-
-})
+                  gutter="4px">
+                { images.map(image => <SelectableImage
+                    url={image.url}
+                    id={image.id}
+                    userId={image.userId}
+                />)
+                })}
+          </Masonry>
+          <Link to="/user-pick"><CenteredFixedButton disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton></Link>
+        </Layout>)
+  }
+}
 
 export const query = graphql`
 {
@@ -61,4 +59,4 @@ export const query = graphql`
 }
 `;
 
-export default sizeMe()(ImagePickPage)
+export default sizeMe()(view(ImagePickPage))

@@ -41,6 +41,7 @@
     "react-selectize": "^3.0.1",
     "react-sizeme": "^2.5.2",
     "react-stack-grid": "^0.7.1",
+    "react-transition-group": "1.x",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.1.3"

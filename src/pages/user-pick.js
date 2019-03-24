@@ -17,6 +17,7 @@ import { teal } from 'const/colors'
 import Text from 'components/Text'
 import fetchImagesByUserId from 'util/Images/fetchByUserId'
 import styled from 'styled-components'
+import Masonry from 'components/Masonry'
 
 const ModalClose = styled.div`
   background-color:${teal};
@@ -142,21 +143,19 @@ class SecondPage extends Component {
           <h2>Select who you'd like to contact.</h2>
           <h6>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h6>
           { topPicks.length > 0 &&
-        <StackGrid columnWidth={colWidth}>
-          {this.renderUsers()}
 
-        </StackGrid>
+            <Masonry>
+          {this.renderUsers()}
+          </Masonry>
         }
         </Container>
 
         <Modal size="medium" open={iframeOpen} onClose={this.onClose}>
-          <StackGrid
-              columnWidth={colWidth}
-          >
+            <Masonry>
             { modalImages.map(image => <Image
                 src={image.url}
             />)}
-          </StackGrid>
+          </Masonry>
         </Modal>
 
         <ModalClose display={iframeOpen} onClick={this.onClose}>

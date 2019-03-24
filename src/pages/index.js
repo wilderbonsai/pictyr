@@ -15,7 +15,7 @@ import Button from 'components/Button'
 import { SimpleSelect } from 'react-selectize'
 import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+
 
 const Landing = styled.div`
   color: white;
