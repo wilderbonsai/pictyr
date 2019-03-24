@@ -13,6 +13,7 @@ import Text from 'components/Text'
 import { teal } from 'const/colors'
 import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
 const ImagePickPage = view(({data, size}) => {
   const width = size.width
@@ -29,16 +30,19 @@ const ImagePickPage = view(({data, size}) => {
           <h1>Step 1 of 3.<br/>Pick your favorites.</h1>
           <h6>Displaying work of local photographers in <Text color={teal} underline pointer>Berlin</Text></h6>
         </Container>
-        <StackGrid
-            columnWidth={colWidth}
+        <ResponsiveMasonry
+            columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
         >
+          <Masonry
+              gutter="4px">
           { images.map(image => <SelectableImage
               url={image.url}
               id={image.id}
               userId={image.userId}
           />)
           })}
-        </StackGrid>
+        </Masonry>
+          </ResponsiveMasonry>
         <Link to="/user-pick"><CenteredFixedButton disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton></Link>
       </Layout>
   )
