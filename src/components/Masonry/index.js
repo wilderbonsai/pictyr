@@ -17,11 +17,11 @@ const Transition = styled(CSSTransitionGroup)`
 `
 
 const StyledMasonry = ({children}) => {
-  return (
-      <Transition
-          transitionName="example"
-          transitionAppearTimeout={500}
-          transitionAppear={true}>
+  return (<Transition
+      transitionName="example"
+      transitionAppearTimeout={500}
+      transitionAppear={true}>
+
 
         <ResponsiveMasonry
             columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}

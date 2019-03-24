@@ -13,6 +13,7 @@ import sizeMe from 'react-sizeme';
 import CenteredFixedButton from 'components/Button/CenterFixed'
 import isValid from 'util/Messages/isValid'
 import { navigate } from "gatsby"
+import Transition from 'components/Transition'
 const InputWrapper = styled.div`
   margin-bottom:20px
 `
@@ -73,6 +74,7 @@ class ContactPage extends Component {
           <Form  onValidSubmit={this.successfulSubmit}>
           <Container centered>
             <h1>Last Step. <br/>Contact and connect.</h1>
+            <Transition>
             <Grid centered columns={columns}>
               <Grid.Column>
                 <InputWrapper>
@@ -132,6 +134,7 @@ class ContactPage extends Component {
               </Grid.Column>
 
             </Grid>
+              </Transition>
 
           </Container>
             <CenteredFixedButton type="submit" onClick={this.submitForm}
