@@ -15,6 +15,7 @@ import styled from 'styled-components'
 
 const Footer = styled.div`
   width:100%;
+  min-height:50px;
 `
 const Layout = ({ children }) => (
   <StaticQuery

@@ -86,7 +86,7 @@ class SecondPage extends Component {
   }
 
   handleDisplayUserCollection = async (e, user) => {
-    e.stopPropagation();
+   // e.stopPropagation();
     console.log(user, 'user')
     const images = await fetchImagesByUserId(user.id)
     console.log(images)

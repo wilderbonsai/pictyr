@@ -19,7 +19,7 @@ import 'react-selectize/themes/index.css'
 
 const Landing = styled.div`
   color: white;
-  margin-top:${({mobile}) => mobile ? '60px' : '60px'}
+  margin-top:${({mobile}) => mobile ? '40px' : '40px'}
   
   font-size:${({mobile}) => mobile ? '40px' : '60px'}
     line-height:${({mobile}) => mobile ? '40px' : '60px'}
