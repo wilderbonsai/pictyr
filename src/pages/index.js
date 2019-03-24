@@ -89,6 +89,7 @@ const IndexPage = view(({data, size}) => {
                     theme = "material" // can be one of "default" | "bootstrap3" | "material" | ...
                     transitionEnter = {true}
                     style={{color:'white'}}
+                    monitorImagesLoaded={true}
 
                 />
                 Photographer.
