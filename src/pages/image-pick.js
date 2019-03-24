@@ -39,8 +39,7 @@ class ImagePickPage extends Component {
                     url={image.url}
                     id={image.id}
                     userId={image.userId}
-                />)
-                })}
+                />)}
           </Masonry>
           <Link to="/user-pick"><CenteredFixedButton disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton></Link>
         </Layout>)

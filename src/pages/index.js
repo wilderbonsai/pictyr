@@ -71,9 +71,9 @@ const IndexPage = view(({data, size}) => {
   const images = data.images.allImages
   console.log(selectedImages.images.length)
   let colWidth = '25%';
-  if(width < 1300)  colWidth = '33%';
-  if(width < 900)  colWidth = '50%';
-  if(width < 550)  colWidth = '100%';
+  if (width < 1300)  colWidth = '33%';
+  if (width < 900)  colWidth = '50%';
+  if (width < 550)  colWidth = '100%';
   return (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
@@ -82,26 +82,25 @@ const IndexPage = view(({data, size}) => {
           <Container>
             <Grid stackable centered columns={2}>
               <Grid.Column>
-              <ContentMargin>
-                Discover your <StyledSelect
-                    options = {options}
+                <ContentMargin>
+                  Discover your <StyledSelect
+                    options={options}
                     mobile={(width < 550)}
-                    placeholder = "Ideal"
-                    theme = "material" // can be one of "default" | "bootstrap3" | "material" | ...
-                    transitionEnter = {true}
-                    style={{color:'white'}}
+                    placeholder="Ideal"
+                    theme="material" // can be one of "default" | "bootstrap3" | "material" | ...
+                    transitionEnter={true}
+                    style={{color: 'white'}}
                     monitorImagesLoaded={true}
 
                 />
-                Photographer.
-              </ContentMargin>
-              <Link to="/image-pick"><Button fluid text="Let's Go" /></Link></Grid.Column>
+                  Photographer.
+                </ContentMargin>
+                <Link to="/image-pick"><Button fluid text="Let's Go"/></Link></Grid.Column>
             </Grid>
           </Container>
         </Landing>
-       </Layout>
+      </Layout>
   )
-
 })
 
 export const query = graphql`
