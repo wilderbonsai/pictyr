@@ -1,13 +1,12 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "components/layout"
+import SEO from "components/seo"
 import { view } from 'react-easy-state'
 import selectedUsers, {addUser, removeUser, removeAllUsers} from 'store/selectedUsers'
 import selectedImages, {getUniqueUserIdList, getSortedUserIdList} from 'store/selectedImages'
 import fetchByIds from 'util/Users/fetchByIds'
 import UserCard from 'components/User/Card'
-import StackGrid from "react-stack-grid";
 import sizeMe from 'react-sizeme';
 import Container from 'components/Container'
 import CenterFixedButton from 'components/Button/CenterFixed'
@@ -59,6 +58,8 @@ class SecondPage extends Component {
     const users = await fetchByIds(userIds);
     const pickOrder = getSortedUserIdList();
     let topPicks = []
+    console.log(users, 'users')
+    console.log(pickOrder, 'order')
     pickOrder.forEach((user) => {
       var result = users.find(obj => {
         return obj.id === user.id
@@ -86,7 +87,7 @@ class SecondPage extends Component {
   }
 
   handleDisplayUserCollection = async (e, user) => {
-   // e.stopPropagation();
+    // e.stopPropagation();
     console.log(user, 'user')
     const images = await fetchImagesByUserId(user.id)
     console.log(images)
@@ -136,38 +137,38 @@ class SecondPage extends Component {
     if(width < 550)  colWidth = '100%';
 
     return (
-      <Layout>
-      <SEO title="Page two"/>
-        <Container>
-        <h1>Step 2 of 3. <br/>Review your photographer picks.</h1>
-          <h2>Select who you'd like to contact.</h2>
-          <h6>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h6>
-          { topPicks.length > 0 &&
+        <Layout>
+          <SEO title="Page two"/>
+          <Container>
+            <h1>Step 2 of 3. <br/>Review your photographer picks.</h1>
+            <h2>Select who you'd like to contact.</h2>
+            <h6>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h6>
+            { topPicks.length > 0 &&
 
             <Masonry>
-          {this.renderUsers()}
-          </Masonry>
-        }
-        </Container>
+              {this.renderUsers()}
+            </Masonry>
+            }
+          </Container>
 
-        <Modal size="medium" open={iframeOpen} onClose={this.onClose}>
+          <Modal size="medium" open={iframeOpen} onClose={this.onClose}>
             <Masonry>
-            { modalImages.map(image => <Image
-                src={image.url}
-            />)}
-          </Masonry>
-        </Modal>
+              { modalImages.map(image => <Image
+                  src={image.url}
+              />)}
+            </Masonry>
+          </Modal>
 
-        <ModalClose display={iframeOpen} onClick={this.onClose}>
-          <Icon size="big" name="cancel"/>
+          <ModalClose display={iframeOpen} onClick={this.onClose}>
+            <Icon size="big" name="cancel"/>
           </ModalClose>
-        <Link to="/contact">
+
           <CenterFixedButton
+              to="/pick/contact"
               disabled={selectedUsers.users.length === 0}
               text="Proceed" />
-        </Link>
 
-    </Layout>
+        </Layout>
     )
   }
 }

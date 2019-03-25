@@ -4,6 +4,13 @@ const data = store({
   users: []
 })
 
+export const getIdList = () => {
+  const ids = [];
+  data.users.forEach(function(users){
+    ids.push(users.id)
+  })
+  return ids;
+}
 
 export const removeUser = (id) => {
   data.users = data.users.filter(function( obj ) {

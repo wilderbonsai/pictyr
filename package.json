@@ -6,12 +6,14 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@rebass/grid": "^6.0.0-7",
+    "axios": "^0.18.0",
     "emoji-strip": "^1.0.1",
     "escape-string": "^1.0.2",
     "formsy-react": "^1.1.5",
     "formsy-semantic-ui-react": "^0.3.4",
     "gatsby": "^2.1.37",
     "gatsby-image": "^2.0.34",
+    "gatsby-plugin-create-client-paths": "^2.0.5",
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-page-transitions": "^1.0.7",
@@ -38,6 +40,7 @@
     "react-masonry-component": "^6.2.1",
     "react-masonry-infinite": "^1.2.2",
     "react-responsive-masonry": "^2.0.0",
+    "react-select": "^2.4.2",
     "react-selectize": "^3.0.1",
     "react-sizeme": "^2.5.2",
     "react-stack-grid": "^0.7.1",
@@ -73,7 +76,4 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
-  "pre-commit": {
-    "run": "lint:fix"
-  }
 }

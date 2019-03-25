@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const CenterFixed = (props) => (
   <Wrapper>
-    <Button fluid icon='right arrow'  labelPosition='right' {...props} />
+    <Button size="large" fluid icon='right arrow'  labelPosition='right' {...props} />
   </Wrapper>
 )
 

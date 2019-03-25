@@ -38,7 +38,11 @@ module.exports = {
         // Url to query from
         url: "https://api.graph.cool/simple/v1/pictyr-dev",
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/pick/*`] },
+    },
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

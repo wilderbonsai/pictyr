@@ -1,8 +1,7 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
 import { view } from 'react-easy-state'
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "components/layout"
+import SEO from "components/seo"
 import SelectableImage from 'components/Image/Selectable'
 import selectedImages from 'store/selectedImages'
 import sizeMe from 'react-sizeme';
@@ -13,15 +12,22 @@ import { teal } from 'const/colors'
 import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
 import Masonry from 'components/Masonry'
-
+import fetchAll from 'util/Images/fetchAll'
 
 class ImagePickPage extends Component {
+  state = {
+    images : []
+  }
+  componentDidMount= async ()  =>{
+    const images = await fetchAll()
+    this.setState({images:images})
+  }
 
   render() {
-    const { data, size } = this.props
+    const { size } = this.props
+    const { images } = this.state
     const width = size.width
-    const images = data.images.allImages
-    console.log(selectedImages.images.length)
+
     let colWidth = '25%';
     if(width < 1300)  colWidth = '33%';
     if(width < 900)  colWidth = '50%';
@@ -34,28 +40,17 @@ class ImagePickPage extends Component {
             <h6>Displaying work of local photographers in <Text color={teal} underline pointer>Berlin</Text></h6>
           </Container>
           <Masonry
-                  gutter="4px">
-                { images.map(image => <SelectableImage
-                    url={image.url}
-                    id={image.id}
-                    userId={image.userId}
-                />)}
+              gutter="4px">
+            { images.map(image => <SelectableImage
+                url={image.url}
+                id={image.id}
+                userId={image.userId}
+            />)}
           </Masonry>
-          <Link to="/user-pick"><CenteredFixedButton disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton></Link>
+          <CenteredFixedButton to="/pick/users" disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton>
         </Layout>)
   }
 }
 
-export const query = graphql`
-{
-	images {
-    allImages {
-      url,
-      id,
-      userId
-    }
-  }
-}
-`;
 
 export default sizeMe()(view(ImagePickPage))
