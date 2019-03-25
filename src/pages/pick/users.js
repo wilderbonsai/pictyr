@@ -18,6 +18,7 @@ import fetchImagesByUserId from 'util/Images/fetchByUserId'
 import styled from 'styled-components'
 import Masonry from 'components/Masonry'
 
+
 const ModalClose = styled.div`
   background-color:${teal};
     color: white;
@@ -142,7 +143,7 @@ class SecondPage extends Component {
           <Container>
             <h1>Step 2 of 3. <br/>Review your photographer picks.</h1>
             <h2>Select who you'd like to contact.</h2>
-            <h6>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h6>
+            <h5>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h5>
             { topPicks.length > 0 &&
 
             <Masonry>

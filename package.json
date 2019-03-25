@@ -76,4 +76,7 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
+  "pre-commit": {
+    "run": "lint:fix"
+  }
 }

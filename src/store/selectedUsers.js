@@ -12,6 +12,10 @@ export const getIdList = () => {
   return ids;
 }
 
+export const clearUsers = () => {
+  data.users = [];
+}
+
 export const removeUser = (id) => {
   data.users = data.users.filter(function( obj ) {
     return obj.id !== id;

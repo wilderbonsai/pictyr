@@ -8,6 +8,9 @@ export const isSelected = (id) => {
  return  data.images.some(image => image.id === id)
 }
 
+export const clearImages = () => {
+  data.images = [];
+}
 
 export const removeImage = (id) => {
   data.images = data.images.filter(function( obj ) {
