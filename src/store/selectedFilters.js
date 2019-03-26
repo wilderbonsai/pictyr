@@ -21,8 +21,8 @@ export const selectPhotographer = () => {
 
 export const selectModel = () => {
   const filters = data.filters
-  filters.type = MODEL
-  filters.color = 'purple'
+  filters.type = PHOTOGRAPHER
+  filters.color = 'teal'
 }
 
 export const toggleGender = (gender) => {
