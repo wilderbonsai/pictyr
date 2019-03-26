@@ -5,8 +5,8 @@ export const MODEL = 'model'
 
 const data = store({
   filters: {
-    'type': 'model',
-    'color': 'purple',
+    'type': PHOTOGRAPHER,
+    'color': 'teal',
     'arrangement': 'pay',
     'genders': []
   }
@@ -22,7 +22,7 @@ export const selectPhotographer = () => {
 export const selectModel = () => {
   const filters = data.filters
   filters.type = PHOTOGRAPHER
-  filters.color = 'teal'
+  filters.color = 'purple'
 }
 
 export const toggleGender = (gender) => {
