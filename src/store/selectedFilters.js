@@ -21,7 +21,7 @@ export const selectPhotographer = () => {
 
 export const selectModel = () => {
   const filters = data.filters
-  filters.type = PHOTOGRAPHER
+  filters.type = MODEL
   filters.color = 'purple'
 }
 
