@@ -15,10 +15,10 @@ import selectedFilters, { selectPhotographer, selectModel, MODEL, PHOTOGRAPHER} 
 
 const Landing = styled.div`
   color: white;
-  margin-top:${({mobile}) => mobile ? '40px' : '40px'}
+  margin-top:${({mobile}) => mobile ? '40px' : '0px'}
   
   font-size:${({mobile}) => mobile ? '40px' : '60px'}
-    line-height:${({mobile}) => mobile ? '50px' : '80px'}
+    line-height:${({mobile}) => mobile ? '50px' : '70px'}
     
 `
 
@@ -27,8 +27,7 @@ const StyledButton = styled(Button) `
   &&&&&& {
     text-align: left;
     font-size:${({mobile}) => mobile ? '40px' : '60px'}
-    padding-left: 15px;
-    padding-right:5px;
+    padding: 20px 5px 20px 15px;
      box-shadow: 0 0 0 5px rgba(255,255,255,.1) inset !important;
      color: rgba(255,255,255,.1) !important;
   }
@@ -47,7 +46,7 @@ const Color = styled.span`
 `
 
 const ContentMargin = styled.div`
-  margin-bottom:50px;
+  margin-bottom:20px;
 `
 
 class IndexPage extends Component {
