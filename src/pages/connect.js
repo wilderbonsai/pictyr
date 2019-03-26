@@ -3,7 +3,7 @@ import InstagramApi from 'instagram-api';
 import InstagramLogin from 'react-instagram-login';
 import saveImage from 'util/Images/save'
 import saveUser from 'util/Users/save'
-import Layout from 'components/Layout'
+import Layout from 'components/layout'
 import Container from 'components/Container'
 
 class Connect extends Component {
