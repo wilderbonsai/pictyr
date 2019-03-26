@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { removeImage, isSelected, addImage } from 'store/selectedImages'
+import Overlay from 'components/Overlay'
 const ShadowBox = styled.div`
 
 position: relative;
@@ -20,21 +21,6 @@ box-shadow: 2px 2px 30px -4px rgba(0,0,0,0.75);
 transition: all 0.3s ease-in-out;
 `
 
-const Overlay = styled.div`
-  position:absolute;
-  top:0;
-  width:100%;
-  height:100%;
-  background-color:${({selected}) => selected ? 'rgba(157,199,149,0.6)' : 'rgba(0,0,0,0)'};
-
-  ${({selected}) => selected ? 'border: 15px solid #9dc795' : 'border: 0px solid'}
-  
-  &:hover {
-  transition: all 0.3s ease-in-out;
-  }
-  transition: all 0.3s ease-in-out;
-  
-`
 
 class SelectableImage extends Component {
   state = {
@@ -45,6 +31,7 @@ class SelectableImage extends Component {
   componentDidMount() {
     const { id } = this.props;
     if(isSelected(id)) {
+      console.log('isSelected')
       this.setState({selected: true})
     }
   }
@@ -62,13 +49,13 @@ class SelectableImage extends Component {
   }
 
   render() {
-    const { url, id} = this.props
+    const { url, id, color} = this.props
     const { selected } = this.state
 
     return (
         <ShadowBox  width={[1,1/2,1/3, 1/4, 1/5]} onClick={this.handleClick}>
           <img height="auto" src={url} id={id}/>
-          <Overlay selected={selected} id={id}/>
+          <Overlay selected={selected} id={id} color={color}/>
         </ShadowBox>
     )
   }

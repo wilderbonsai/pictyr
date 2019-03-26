@@ -18,6 +18,7 @@ import 'react-selectize/themes/index.css'
 import { teal } from 'const/colors'
 
 
+
 const Landing = styled.div`
   color: white;
   margin-top:${({mobile}) => mobile ? '20px' : '30px'}

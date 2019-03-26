@@ -13,7 +13,7 @@ import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
 import Masonry from 'components/Masonry'
 import fetchAll from 'util/Images/fetchAll'
-
+import selectedFilters from 'store/selectedFilters'
 class ImagePickPage extends Component {
   state = {
     images : []
@@ -27,7 +27,7 @@ class ImagePickPage extends Component {
     const { size } = this.props
     const { images } = this.state
     const width = size.width
-
+    const filterColor = selectedFilters.filters.color
     let colWidth = '25%';
     if(width < 1300)  colWidth = '33%';
     if(width < 900)  colWidth = '50%';
@@ -42,12 +42,13 @@ class ImagePickPage extends Component {
           <Masonry
               gutter="4px">
             { images.map(image => <SelectableImage
+                color={filterColor}
                 url={image.url}
                 id={image.id}
                 userId={image.userId}
             />)}
           </Masonry>
-          <CenteredFixedButton to="/pick/users" disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton>
+          <CenteredFixedButton color={filterColor} to="/pick/users" disabled={selectedImages.images.length === 0} text="Continue"></CenteredFixedButton>
         </Layout>)
   }
 }

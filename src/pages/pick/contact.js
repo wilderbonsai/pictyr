@@ -17,7 +17,7 @@ import Transition from 'components/Transition'
 import sendMessage from 'util/Messages/send'
 import {clearUsers} from 'store/selectedUsers'
 import {clearImages} from 'store/selectedImages'
-
+import selectedFilters from 'store/selectedFilters'
 const StyledCheckbox = styled(Checkbox)`
   margin-bottom:20px;
   font-weight:bold;
@@ -88,7 +88,7 @@ class ContactPage extends Component {
     const { size } = this.props
     const { loading, hide } = this.state
     const users = selectedUsers.users
-
+    const filterColor = selectedFilters.filters.color;
     let columns = 2;
     if(size.width < 800)  columns = 1;
     const errorLabel = <Label color="red"/>
@@ -166,7 +166,7 @@ class ContactPage extends Component {
               </Transition>
 
             </TransitionContainer>
-            <CenteredFixedButton type="submit" onClick={this.submitForm}
+            <CenteredFixedButton color={filterColor} type="submit" onClick={this.submitForm}
                                  disabled={!isValid(this.state.message)} text="Contact"/>
           </Form>
         </Layout>

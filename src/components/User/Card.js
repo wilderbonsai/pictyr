@@ -18,7 +18,7 @@ const CardButton = styled(Button)`
   width: auto;}
 `
 
-  const UserCard = ({user, pickedImages, handleClick, selected, handleViewCollection}) => {
+  const UserCard = ({user, pickedImages, handleClick, selected, handleViewCollection, overlayColor}) => {
   console.log(user.profileImageUrl);
   return (
       <Card fluid onClick={()=>handleClick(user)}>
@@ -60,7 +60,7 @@ const CardButton = styled(Button)`
             onClick={()=>handleClick(user)}
         />
 
-        <Overlay selected={selected}/>
+        <Overlay color={overlayColor} selected={selected}/>
       </Card>
 
      )

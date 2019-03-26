@@ -3,6 +3,8 @@ import InstagramApi from 'instagram-api';
 import InstagramLogin from 'react-instagram-login';
 import saveImage from 'util/Images/save'
 import saveUser from 'util/Users/save'
+import Layout from 'components/Layout'
+import Container from 'components/Container'
 
 class Connect extends Component {
 
@@ -64,7 +66,8 @@ class Connect extends Component {
   render() {
     const { showLogin, posts, followers, src} = this.state;
     return (
-        <div>
+        <Layout>
+          <Container>
           <h4>Instagram</h4>
           {showLogin &&
           <InstagramLogin
@@ -76,7 +79,8 @@ class Connect extends Component {
           />
           }
           <img src={src} />
-        </div>
+            </Container>
+        </Layout>
     )
   }
 }

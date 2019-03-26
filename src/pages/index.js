@@ -1,22 +1,17 @@
-import React from "react"
+import React, { Component } from "react"
 import { Link } from "gatsby"
 import { view } from 'react-easy-state'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import StackGrid from "react-stack-grid";
-import SelectableImage from 'components/Image/Selectable'
-import selectedImages from 'store/selectedImages'
 import sizeMe from 'react-sizeme';
-import CenteredFixedButton from 'components/Button/CenterFixed'
 import Container from 'components/Container'
-import { Select, Grid } from 'semantic-ui-react'
+import {Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
 import Button from 'components/Button'
-import { SimpleSelect } from 'react-selectize'
 import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
-import { teal } from 'const/colors'
-
+import { teal, purple } from 'const/colors'
+import selectedFilters, { selectPhotographer, selectModel, MODEL, PHOTOGRAPHER} from 'store/selectedFilters'
 
 const Landing = styled.div`
   color: white;
@@ -27,81 +22,103 @@ const Landing = styled.div`
     
 `
 
-const StyledSelect = styled(SimpleSelect)`
+const StyledButton = styled(Button) `
 
-  margin: 0px 0px;
-  color: #00b5ad !important;
-  &&&  .react-selectize {
-    color: teal !important; 
-    height:auto;
-    text-indent: 0px;
-
+  &&&&&& {
+    text-align: left;
+    font-size:${({mobile}) => mobile ? '40px' : '60px'}
+    padding-left: 15px;
+    padding-right:5px;
+     box-shadow: 0 0 0 5px rgba(255,255,255,.1) inset !important;
+     color: rgba(255,255,255,.1) !important;
   }
-  
-  &&&   {
-    width:100%;
-  }
-  
-  &&&& .react-selectize-placeholder {
-    line-height:${({mobile}) => mobile ? '60px' : '90px'}
-    color: #00b5ad !important;
-    text-indent: 0px;
-  }
-  
-  &&&& .react-selectize-control  {
-        border-bottom: 2px solid rgba(255,255,255, 0.4);
-  }
-  
-  &&&& .react-selectize-toggle-button-container, &&& .react-selectize-reset-button-container {
-    margin-top:40px;
-  }
-
 `
-
-const Teal = styled.span`
-  color: ${teal};
+const Color = styled.span`
+  color: ${({ color }) => { 
+    if(color == 'teal') {
+      return teal;
+    } 
+    
+    if(color == 'purple') {
+      return purple
+    }
+  }};
+  transition: all 0.3s ease-in-out;
 `
-const  options = ["Event", "Wedding", "Portait", "Art", "Product", "Food"].map(function(fruit){
-  return {label: fruit, value: fruit}
-});
 
 const ContentMargin = styled.div`
   margin-bottom:50px;
 `
 
-const IndexPage = view(({data, size}) => {
-  const width = size.width
-  let colWidth = '25%';
-  if (width < 1300)  colWidth = '33%';
-  if (width < 900)  colWidth = '50%';
-  if (width < 550)  colWidth = '100%';
-  return (
-      <Layout>
-        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
+class IndexPage extends Component {
+  state = {
+    selected: 'photographer',
+    color: 'teal'
+  }
 
-        <Landing mobile={(width < 550)}>
-          <Container>
-            <Grid stackable centered columns={2}>
-              <Grid.Column>
-                <ContentMargin>
-                  Discover your <StyledSelect
-                    options={options}
-                    mobile={(width < 550)}
-                    placeholder="Ideal"
-                    theme="material" // can be one of "default" | "bootstrap3" | "material" | ...
-                    transitionEnter={true}
-                    style={{color: 'white'}}
-                    monitorImagesLoaded={true}
+  handleClick(type) {
+    let color = ''
+    if(type === PHOTOGRAPHER) {
+      selectPhotographer()
+      console.log('select Photographer')
+    } else if(type === MODEL) {
+      selectModel()
+    }
 
-                />
-                  Photographer<br/> in <Teal>Berlin.</Teal>
-                </ContentMargin>
-                <Link to="/pick/filters"><Button size="large" fluid text="Let's Go"/></Link></Grid.Column>
-            </Grid>
-          </Container>
-        </Landing>
-      </Layout>
-  )
-})
 
-export default sizeMe()(IndexPage)
+    this.setState({selected:type, color:selectedFilters.filters.color})
+  }
+  render() {
+    const { size } = this.props
+    const { color, selected } = this.state
+    const width = size.width
+    let colWidth = '25%';
+    if (width < 1300)  colWidth = '33%';
+    if (width < 900)  colWidth = '50%';
+    if (width < 550)  colWidth = '100%';
+    const mobile = (width < 550)
+    return (
+        <Layout>
+          <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
+          <Landing mobile={mobile}>
+            <Container>
+              <Grid stackable centered columns={2}>
+                <Grid.Column>
+                  <ContentMargin>
+                    Discover your
+                    <StyledButton
+                        onClick={()=>this.handleClick(PHOTOGRAPHER)}
+                        active={(selected === PHOTOGRAPHER)}
+                        mobile={mobile}
+                        basic
+                        size="massive"
+                        inverted
+                        fluid
+                        color='teal'>
+                      Photographer
+                    </StyledButton>
+                    <StyledButton
+                        onClick={()=>this.handleClick(MODEL)}
+                        active={(selected === MODEL)}
+                        mobile={mobile}
+                        basic
+                        size="massive"
+                        inverted
+                        fluid
+                        color='purple'>
+                      Model
+                    </StyledButton>
+                    in <Color color={color}>Berlin.</Color>
+                  </ContentMargin>
+                  <Link to="/pick/filters"><Button size="large" color={color} fluid text="Let's Go"/></Link></Grid.Column>
+              </Grid>
+            </Container>
+          </Landing>
+        </Layout>
+    )
+  }
+}
+
+
+
+export default sizeMe()(view(IndexPage))

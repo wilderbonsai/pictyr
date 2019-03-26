@@ -17,7 +17,7 @@ import Text from 'components/Text'
 import fetchImagesByUserId from 'util/Images/fetchByUserId'
 import styled from 'styled-components'
 import Masonry from 'components/Masonry'
-
+import selectedFilters from 'store/selectedFilters'
 
 const ModalClose = styled.div`
   background-color:${teal};
@@ -99,7 +99,7 @@ class SecondPage extends Component {
   renderUsers = () => {
     const { topPicks, selectedUser } = this.state;
     const images = selectedImages.images;
-
+    const filterColor = selectedFilters.filters.color;
     const userCards = [];
     topPicks.forEach((user) => {
       const userImages = []
@@ -120,6 +120,7 @@ class SecondPage extends Component {
           selected={selected}
           handleClick={this.handleClickUser}
           handleViewCollection={this.handleDisplayUserCollection}
+          overlayColor={filterColor}
       />)
 
     })
@@ -136,12 +137,13 @@ class SecondPage extends Component {
     if(width < 1100)  colWidth = '33%';
     if(width < 900)  colWidth = '50%';
     if(width < 550)  colWidth = '100%';
-
+    const filterColor = selectedFilters.filters.color;
+    const typeText = selectedFilters.filters.type
     return (
         <Layout>
           <SEO title="Page two"/>
           <Container>
-            <h1>Step 2 of 3. <br/>Review your photographer picks.</h1>
+            <h1>Step 2 of 3. <br/>Review your {typeText} picks.</h1>
             <h2>Select who you'd like to contact.</h2>
             <h5>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h5>
             { topPicks.length > 0 &&
@@ -165,6 +167,7 @@ class SecondPage extends Component {
           </ModalClose>
 
           <CenterFixedButton
+              color={filterColor}
               to="/pick/contact"
               disabled={selectedUsers.users.length === 0}
               text="Proceed" />
