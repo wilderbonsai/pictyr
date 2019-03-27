@@ -22,7 +22,9 @@ export default class AuthService {
   }
 
   handleAuthentication () {
-    const redirect = localStorage.getItem('authRedirectPath')
+    if(typeof(localStorage) != "undefined") {
+      const redirect = localStorage.getItem('authRedirectPath')
+
     this.auth.parseHash(async (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult)
@@ -34,6 +36,7 @@ export default class AuthService {
         navigate(redirect)
       }
     })
+    }
   }
 
   setSession (authResult) {
