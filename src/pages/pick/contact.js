@@ -93,7 +93,7 @@ class ContactPage extends Component {
     if(size.width < 800)  columns = 1;
     const errorLabel = <Label color="red"/>
     return (
-        <Layout>
+        <Layout {...this.props}>
 
           <SEO title="Page two"/>
           <Dimmer active={loading} page>

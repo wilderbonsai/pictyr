@@ -17,7 +17,7 @@ const Footer = styled.div`
   width:100%;
   min-height:150px;
 `
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -30,7 +30,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header currentPath={location.pathname} siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>
         <Footer/>
       </>

@@ -3,16 +3,13 @@ import Button from './index'
 import styled from 'styled-components'
 
 const StyledButton = styled(Button)`
- &&&&.teal:hover,  {
-    box-shadow: 0 0 0 5px #fff inset!important;
-    color: #fff!important;
+  
+  &&&&&&&&:focus {
+    box-shadow: 0 0 0 2px rgba(255,255,255,.5) inset!important;
+    color:#fff!important;
   }
   
-  &&&&&&&:focus {
-  box-shadow: 0 0 0 2px rgba(255,255,255,.5) inset!important;
-  color:#fff!important;
-  }
-  &&&&&.purple:hover {
+  &&&&&.purple:hover, &&&&&.teal:hover, &&&&&:hover {
     box-shadow: 0 0 0 5px #fff inset!important;
     color: #fff!important;
   }

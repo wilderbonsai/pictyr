@@ -63,7 +63,7 @@ class FilterPage extends Component {
     if (width < 900)  colWidth = '50%';
     if (width < 550)  colWidth = '100%';
     return (
-        <Layout>
+        <Layout {...this.props}>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
           <Container>
             <Grid stackable centered columns={2}>
@@ -127,7 +127,6 @@ class FilterPage extends Component {
                     <h3>Connect your instagram</h3>
                   </Modal.Content>
                   <Modal.Actions>
-
                   </Modal.Actions>
                 </Modal>
                 <CenterFixedButton disabled={!this.canContinue()} color={color} to="/pick/images"  text="Continue"></CenterFixedButton>

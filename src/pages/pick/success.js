@@ -40,14 +40,14 @@ const ContentMargin = styled.div`
   margin-bottom:50px;
 `
 
-const IndexPage = view(({data, size}) => {
+const IndexPage = view(({data, size, location}) => {
   const width = size.width
   let colWidth = '25%';
   if (width < 1300)  colWidth = '33%';
   if (width < 900)  colWidth = '50%';
   if (width < 550)  colWidth = '100%';
   return (
-      <Layout>
+      <Layout location={location}>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
 
         <Landing mobile={(width < 550)}>

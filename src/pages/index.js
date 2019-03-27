@@ -12,7 +12,10 @@ import 'react-selectize/dist/index.min.css'
 import 'react-selectize/themes/index.css'
 import { teal, purple } from 'const/colors'
 import selectedFilters, { selectPhotographer, selectModel, MODEL, PHOTOGRAPHER} from 'store/selectedFilters'
-
+import AuthService from 'util/Auth/AuthService'
+import userIdOnboarded from 'util/Users/isOnboarded'
+import { navigate } from 'gatsby'
+const Auth = new AuthService()
 const Landing = styled.div`
   color: white;
   margin-top:${({mobile}) => mobile ? '40px' : '0px'}
@@ -55,11 +58,19 @@ class IndexPage extends Component {
     color: 'teal'
   }
 
+  async componentDidMount() {
+    if(Auth.isAuthenticated()) {
+      Auth.renewSession()
+      if(! await userIdOnboarded()) {
+        navigate('actions/onboard')
+      }
+    }
+  }
+
   handleClick(type) {
     let color = ''
     if(type === PHOTOGRAPHER) {
       selectPhotographer()
-      console.log('select Photographer')
     } else if(type === MODEL) {
       selectModel()
     }
@@ -77,7 +88,7 @@ class IndexPage extends Component {
     if (width < 550)  colWidth = '100%';
     const mobile = (width < 550)
     return (
-        <Layout>
+        <Layout {...this.props}>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
           <Landing mobile={mobile}>
             <Container>

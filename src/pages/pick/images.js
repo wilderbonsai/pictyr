@@ -33,7 +33,7 @@ class ImagePickPage extends Component {
     if(width < 900)  colWidth = '50%';
     if(width < 550)  colWidth = '100%';
     return (
-        <Layout>
+        <Layout {...this.props}>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
           <Container>
             <h1>Step 1 of 3.<br/>Pick your favorites.</h1>

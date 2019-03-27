@@ -140,7 +140,7 @@ class SecondPage extends Component {
     const filterColor = selectedFilters.filters.color;
     const typeText = selectedFilters.filters.type
     return (
-        <Layout>
+        <Layout {...this.props}>>
           <SEO title="Page two"/>
           <Container>
             <h1>Step 2 of 3. <br/>Review your {typeText} picks.</h1>

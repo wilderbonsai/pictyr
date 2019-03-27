@@ -42,7 +42,6 @@ class Connect extends Component {
         data.website,
         "test@test.com"
     )
-    console.log(user)
     return user;
   }
 
@@ -70,7 +69,7 @@ class Connect extends Component {
           <Container>
           <h4>Instagram</h4>
           {showLogin &&
-          <InstagramLogin
+          <y
               clientId="325a9cef43e946a59809ff7eb0742f0e"
               buttonText="Login"
               onSuccess={this.responseInstagram}

@@ -6,20 +6,25 @@ import {teal, purple} from 'const/colors'
 const StyledButton = styled(SuiButton)`
   &&&&&& { transition: all 0.3s ease-in-out;  border-radius: 0px;}
 
-  &&&&&.inverted:hover, &&&&&.inverted:hover {
+  &&&&&.inverted:hover {
     box-shadow: 0 0 0 5px #fff inset!important;
     color: #fff !important;
   }
   
   
-   &&&&&.teal.active {
+  &&&&&&&&.teal.active {
     box-shadow: 0 0 0 5px ${teal} inset!important;
     color: ${teal}!important;
   }
   
-  &&&&&&&.purple.active {
+  &&&&&&&&.purple.active {
     box-shadow: 0 0 0 5px ${purple} inset!important;
     color: ${purple}!important;
+  }
+  
+  &&&&&&&&.grey.active {
+    box-shadow: 0 0 0 5px #ddd inset!important;
+    color: #FFF!important;
   }
 `
 
@@ -36,7 +41,7 @@ const Button = (props) => {
   }
 
   return (
-    <StyledButton {...props} onClick={(e) => {handleClick(e)}} color={props.color ? props.color : 'teal'} content={props.text} />
+    <StyledButton {...props} onClick={(e) => {handleClick(e)}} color={props.color ? props.color : 'basic'} content={props.text} />
   )
 }
 

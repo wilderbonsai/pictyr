@@ -41,7 +41,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/pick/*`] },
+      options: { prefixes: [`/pick/*`, '/noindex/*'] },
     },
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
