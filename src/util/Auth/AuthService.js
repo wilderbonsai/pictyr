@@ -82,6 +82,8 @@ export default class AuthService {
     return localStorage.getItem('userId')
   }
   isAuthenticated () {
-    return new Date().getTime() < this.getExpiredAt() && this.getAccessToken()
+    if(localStorage) {
+      return new Date().getTime() < this.getExpiredAt() && this.getAccessToken()
+    }
   }
 }
