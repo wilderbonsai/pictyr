@@ -6,6 +6,9 @@ import Button from 'components/Button'
 import { Icon } from 'semantic-ui-react'
 import AuthService from 'util/Auth/AuthService'
 import styled from 'styled-components'
+import ProfileDropdown from 'components/Dropdown/Profile'
+import authenticatedUser from 'store/authenticatedUser'
+import { view } from 'react-easy-state'
 const Auth = new AuthService()
 
 const Wrapper = styled.div`
@@ -28,7 +31,8 @@ const InstagramConnect = styled(Button)`
   display:flex;
   cursor: pointer;
 `
-const Header = ({ siteTitle, currentPath }) => (
+
+const Header = view(({ siteTitle, currentPath }) => (
   <header>
     <Container>
       <Wrapper>
@@ -40,19 +44,25 @@ const Header = ({ siteTitle, currentPath }) => (
                 textDecoration: `none`,
               }}
             >
+
               {siteTitle}.
             </Link>
           </Logo>
         {!Auth.isAuthenticated() && (
-            <InstagramConnect inverted basic color="instagram" onClick={()=> Auth.instagramLogin(currentPath)}>
-              <Icon name='instagram' />Connect
+            <InstagramConnect inverted basic color="facebook" onClick={()=> Auth.instagramLogin(currentPath)}>
+              <Icon name='facebook' />Connect
             </InstagramConnect>
         )}
+
+        {Auth.isAuthenticated() && (
+            <ProfileDropdown src={authenticatedUser.user.profileImageUrl} />
+        )}
+
 
       </Wrapper>
     </Container>
   </header>
-)
+))
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

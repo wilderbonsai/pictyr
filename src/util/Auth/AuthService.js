@@ -1,6 +1,5 @@
 import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth0-variables'
-import EventEmitter from 'eventemitter3'
 import { navigate } from "gatsby"
 import userIsOnboarded from 'util/Users/isOnboarded'
 export default class AuthService {
@@ -10,14 +9,14 @@ export default class AuthService {
     clientID:     'xwXDWwE9Mqe1ob1RrFVhgd032SlKvdbK',
     responseType: 'token id_token',
     redirectUri: 'http://localhost:8000/actions/callback',
-    scope: 'read:current_user update:current_user_metadata'
+    scope: 'read:current_user update:current_user_metadata user_link profile'
   });
 
 
   instagramLogin (path) {
     localStorage.setItem('authRedirectPath', path)
     this.auth.authorize({
-      connection: 'instagram'
+      connection: 'facebook'
     });
   }
 
@@ -31,7 +30,7 @@ export default class AuthService {
         //Check to see if user has any app data for pictyr
         const isOnboarded = await userIsOnboarded()
         if(isOnboarded) navigate(redirect);
-        else navigate('/actions/onboard')
+        else navigate('/onboard/tags')
       } else if (err) {
         navigate(redirect)
       }
@@ -48,10 +47,13 @@ export default class AuthService {
 
   renewSession () {
     this.auth.checkSession({}, (err, authResult) => {
+      console.log(authResult, 'result')
+      console.log(err, 'err')
       if (authResult && authResult.accessToken && authResult.idToken ) {
         this.setSession(authResult)
       } else if (err) {
-        this.logout()
+        console.log(err)
+        //this.logout()
       }
     })
   }
@@ -90,4 +92,9 @@ export default class AuthService {
       return new Date().getTime() < this.getExpiredAt() && this.getAccessToken()
     }
   }
+}
+
+
+export const getUserId = () => {
+  return localStorage.getItem('userId')
 }

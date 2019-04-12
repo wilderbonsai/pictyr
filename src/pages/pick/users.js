@@ -56,14 +56,21 @@ class SecondPage extends Component {
 
   async componentDidMount() {
     const userIds = getUniqueUserIdList();
+    //Get User Details
     const users = await fetchByIds(userIds);
+
     const pickOrder = getSortedUserIdList();
     let topPicks = []
     console.log(users, 'users')
     console.log(pickOrder, 'order')
+
+    //Populate pick order with user details
     pickOrder.forEach((user) => {
+
       var result = users.find(obj => {
-        return obj.id === user.id
+        console.log(obj, 'obj')
+        console.log(user, 'user')
+        return obj.externalId === user.id
       })
 
       let userPick = result;
@@ -89,10 +96,7 @@ class SecondPage extends Component {
 
   handleDisplayUserCollection = async (e, user) => {
     // e.stopPropagation();
-    console.log(user, 'user')
     const images = await fetchImagesByUserId(user.id)
-    console.log(images)
-    console.log(user.id)
     this.setState({modalImages:images, modalUser:user})
     this.show()
   }
@@ -109,18 +113,12 @@ class SecondPage extends Component {
         }
       })
       let selected = false;
-      console.log(selectedUser, user.id)
       if(selectedUser === user.id) {
         selected = true;
       }
 
       userCards.push(<UserCard
           user={user}
-          pickedImages={userImages}
-          selected={selected}
-          handleClick={this.handleClickUser}
-          handleViewCollection={this.handleDisplayUserCollection}
-          overlayColor={filterColor}
       />)
 
     })
@@ -140,22 +138,24 @@ class SecondPage extends Component {
     const filterColor = selectedFilters.filters.color;
     const typeText = selectedFilters.filters.type
     return (
-        <Layout {...this.props}>>
+        <Layout {...this.props}>
           <SEO title="Page two"/>
           <Container>
-            <h1>Step 2 of 3. <br/>Review your {typeText} picks.</h1>
-            <h2>Select who you'd like to contact.</h2>
-            <h5>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h5>
+            <h1>Your Picks</h1>
+            {/*<h5>You have 1 contact pick. Save time and go unlimited for only €0.99. <Text color={teal} underline onClick={()=>{alert('click')}} pointer>Go Unlimited</Text></h5>*/}
             { topPicks.length > 0 &&
 
-            <Masonry>
+            <Masonry
+                mobileColumns="1">
               {this.renderUsers()}
             </Masonry>
             }
           </Container>
 
           <Modal size="medium" open={iframeOpen} onClose={this.onClose}>
-            <Masonry>
+            <Masonry
+              mobileColumns="1"
+            >
               { modalImages.map(image => <Image
                   src={image.url}
               />)}

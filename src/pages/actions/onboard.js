@@ -18,6 +18,7 @@ import { teal } from 'const/colors'
 import CenteredFixedButton from 'components/Button/CenterFixed'
 import AuthService from 'util/Auth/AuthService'
 import axios from 'axios'
+import TagInput from 'components/TagInput'
 const Auth = new AuthService()
 const Section = styled.div`
   margin-bottom: 30px;
@@ -41,7 +42,8 @@ class OnboardPage extends Component {
     other: false,
     genders: [],
     publicProfile: null,
-    termsConsent: false
+    termsConsent: false,
+    city: null
   }
 
 
@@ -76,8 +78,16 @@ class OnboardPage extends Component {
     this.setState({termsConsent:!this.state.termsConsent})
   }
 
+  handleBerlinBasedClick = (berlinBased) => {
+    if(berlinBased) {
+      this.setState({city:'Berlin'})
+    } else {
+      this.setState({city:'Other'})
+    }
+  }
+
   validated = () => {
-    const { photographer, model, other, genders, publicProfile, termsConsent} = this.state
+    const { photographer, model, other, genders, publicProfile, termsConsent, city} = this.state
     if(!photographer && !model && !other) {
       return false;
     }
@@ -94,6 +104,10 @@ class OnboardPage extends Component {
       return false
     }
 
+    if(!city) {
+      return false
+    }
+
     return true;
   }
 
@@ -106,12 +120,13 @@ class OnboardPage extends Component {
         { headers: { "Authorization":`Bearer ${Auth.getAccessToken()}`}}
     )
 
+
     navigate(Auth.getRedirectPath())
   }
 
   render() {
     const {data, size, location} = this.props
-    const {photographer, model, other, genders, publicProfile, termsConsent} = this.state
+    const {photographer, model, other, genders, publicProfile, termsConsent, city} = this.state
     const width = size.width
     let colWidth = '25%';
     if (width < 1300)  colWidth = '33%';
@@ -126,7 +141,9 @@ class OnboardPage extends Component {
                 <h1>Almost there.</h1>
                 <h2>Just a few questions, and you're on your way.</h2>
                 <Section>
-                  <h2>I am a</h2>
+
+                  <h2>Which of the following applies to you?</h2>
+                  <TagInput />
                   <ToggleButton
                       fluid
                       inverted
@@ -134,7 +151,7 @@ class OnboardPage extends Component {
                       active={photographer}
                       size='massive'
                       color='teal'
-                      basic >Photographer</ToggleButton>
+                      basic >I have a restauraunt.</ToggleButton>
                   <ToggleButton
                       fluid
                       inverted
@@ -142,7 +159,7 @@ class OnboardPage extends Component {
                       active={model}
                       color='purple'
                       size='massive'
-                      basic >Model</ToggleButton>
+                      basic >I host popups in different locations.</ToggleButton>
                   <ToggleButton
                       fluid
                       inverted
@@ -150,27 +167,35 @@ class OnboardPage extends Component {
                       active={other}
                       size='massive'
                       color="grey"
-                      basic >Other</ToggleButton>
+                      basic >I host workshops and/or food events.</ToggleButton>
+                  <ToggleButton
+                      fluid
+                      inverted
+                      onClick={this.toggleOther}
+                      active={other}
+                      size='massive'
+                      color="grey"
+                      basic >I do something different.</ToggleButton>
                 </Section>
                 <Section>
-                  <h2>I identify as</h2>
+                  <h2>I am based in Berlin</h2>
                   <SuiButton.Group fluid basic size='massive'>
-                    <ToggleButton
-                        onClick={()=>this.handleGenderClick('male')}
+                    <StyledButton
                         inverted
-                        basic
-                        color='purple'
-                        icon='mars' />
-                    <ToggleButton onClick={()=>this.handleGenderClick('female')}
-                                  inverted basic color='purple' icon='venus' />
-                    <ToggleButton onClick={()=>this.handleGenderClick('trans')}
-                                  inverted basic color='purple' icon='transgender alternate' />
-                    <ToggleButton onClick={()=>this.handleGenderClick('none')}
-                                  inverted basic color='purple' icon='genderless' />
+                        onClick={()=>this.handleBerlinBasedClick(true)}
+                        active={city === 'Berlin'}
+                        color='teal'
+                        basic >Yes</StyledButton>
+                    <StyledButton
+                        inverted
+                        active={city && city !== 'Berlin'}
+                        onClick={()=>this.handleBerlinBasedClick(false)}
+                        color='teal'
+                        basic >No</StyledButton>
                   </SuiButton.Group>
                 </Section>
                 <Section>
-                  <h2>I would like my content advertised on Pictyr and to be emailed about potential collaborations.</h2>
+                  <h2>I would like my content advertised on Pictyr.</h2>
                   <SuiButton.Group fluid basic size='massive'>
                     <StyledButton
                         inverted

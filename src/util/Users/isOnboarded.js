@@ -1,20 +1,12 @@
 import AuthService from 'util/Auth/AuthService'
-import axios from 'axios'
+import fetchUserById from 'util/Users/fetchById'
 
-
+//TODO FIX TO USE SSTATE OVER CALL EVERY TIME
 const isOnboarded = async () => {
   const Auth = new AuthService()
-  const data = await axios.get(`https://pictyr-development.eu.auth0.com/api/v2/users/${Auth.getUserId()}`,
-      { headers: { "Authorization":`Bearer ${Auth.getAccessToken()}`}}
-  )
-  const userMeta = data.data.user_metadata
+  const user = await fetchUserById(Auth.getUserId())
+  return (user.tags.length > 0)
 
-  if(!userMeta) return false
-  if(!userMeta.genders) return false
-  if(!userMeta.photographer && !userMeta.model && !userMeta.other) return false
-  if(userMeta.publicProfile === null) return false
-
-  return true
 }
 
 export default isOnboarded

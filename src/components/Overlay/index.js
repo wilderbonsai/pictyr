@@ -31,7 +31,6 @@ const Overlay = ({selected, color}) => {
     selectedColor = 'rgba(143, 115, 160, 0.75)'
     selectedBorderColor = '#b895c7'
   }
-  console.log(selected)
   return (
     <StyledOverlay selected={selected} selectedColor={selectedColor} selectedBorderColor={selectedBorderColor}/>
   )

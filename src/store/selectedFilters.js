@@ -1,7 +1,8 @@
 import { store } from 'react-easy-state'
 
-export const PHOTOGRAPHER = 'photographer';
+  export const PHOTOGRAPHER = 'photographer';
 export const MODEL = 'model'
+export const EATS = 'eats';
 
 const data = store({
   filters: {

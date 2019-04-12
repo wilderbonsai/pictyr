@@ -6,9 +6,9 @@ const fetchByIds = async (userIds) => {
   const query = `
           query {
             allUsers(filter: {
-              id_in: [${userListString}]
+              externalId_in: [${userListString}]
             }) {
-              id,
+              externalId,
               fullName,
               bio,
               profileImageUrl,

@@ -16,7 +16,8 @@ const Transition = styled(CSSTransitionGroup)`
 }
 `
 
-const StyledMasonry = ({children}) => {
+const StyledMasonry = ({children, mobileColumns = 2}) => {
+
   return (<Transition
       transitionName="example"
       transitionAppearTimeout={500}
@@ -24,7 +25,7 @@ const StyledMasonry = ({children}) => {
 
 
         <ResponsiveMasonry
-            columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+            columnsCountBreakPoints={{350: mobileColumns, 750: 2, 900: 3}}
         >
           <Masonry
               gutter="4px">

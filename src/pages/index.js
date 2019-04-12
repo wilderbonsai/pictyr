@@ -13,7 +13,7 @@ import 'react-selectize/themes/index.css'
 import { teal, purple } from 'const/colors'
 import selectedFilters, { selectPhotographer, selectModel, MODEL, PHOTOGRAPHER} from 'store/selectedFilters'
 import AuthService from 'util/Auth/AuthService'
-import userIdOnboarded from 'util/Users/isOnboarded'
+import userIsOnboarded from 'util/Users/isOnboarded'
 import { navigate } from 'gatsby'
 const Auth = new AuthService()
 const Landing = styled.div`
@@ -61,8 +61,8 @@ class IndexPage extends Component {
   async componentDidMount() {
     if(Auth.isAuthenticated()) {
       Auth.renewSession()
-      if(! await userIdOnboarded()) {
-        navigate('actions/onboard')
+      if(! await userIsOnboarded()) {
+        navigate('onboard/tags')
       }
     }
   }
@@ -95,32 +95,10 @@ class IndexPage extends Component {
               <Grid stackable centered columns={2}>
                 <Grid.Column>
                   <ContentMargin>
-                    Discover your
-                    <StyledButton
-                        onClick={()=>this.handleClick(PHOTOGRAPHER)}
-                        active={(selected === PHOTOGRAPHER)}
-                        mobile={mobile}
-                        basic
-                        size="massive"
-                        inverted
-                        fluid
-                        color='teal'>
-                      Photographer
-                    </StyledButton>
-                    <StyledButton
-                        onClick={()=>this.handleClick(MODEL)}
-                        active={(selected === MODEL)}
-                        mobile={mobile}
-                        basic
-                        size="massive"
-                        inverted
-                        fluid
-                        color='purple'>
-                      Model
-                    </StyledButton>
+                    A modern directory to <Color color={color}>find</Color> and <Color color={color}>connect</Color> you with who you need
                     in <Color color={color}>Berlin.</Color>
                   </ContentMargin>
-                  <Link to="/pick/filters"><Button size="large" color={color} fluid text="Let's Go"/></Link></Grid.Column>
+                  <Link to="/directory"><Button size="large" color={color} fluid text="Let's Go"/></Link></Grid.Column>
               </Grid>
             </Container>
           </Landing>
