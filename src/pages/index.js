@@ -95,7 +95,7 @@ class IndexPage extends Component {
               <Grid stackable centered columns={2}>
                 <Grid.Column>
                   <ContentMargin>
-                    A modern directory to <Color color={color}>find</Color> and <Color color={color}>connect</Color> you with who you need
+                    A modern directory to <Color color={color}>find</Color> and <Color color={color}>connect</Color> you with people you need
                     in <Color color={color}>Berlin.</Color>
                   </ContentMargin>
                   <Link to="/directory"><Button size="large" color={color} fluid text="Let's Go"/></Link></Grid.Column>

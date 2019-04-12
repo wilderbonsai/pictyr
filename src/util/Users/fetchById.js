@@ -15,6 +15,10 @@ const fetchById = async (userId) => {
               tags {
                 id,
                 key
+              },
+              commPreferences {
+                id,
+                key
               }
             }
           }

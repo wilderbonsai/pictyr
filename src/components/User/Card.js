@@ -28,8 +28,6 @@ const CardButton = styled(Button)`
 
               )
             }) }
-            <Label onClick={(e) => handleViewTags(e, user)}>See All Tags</Label>
-
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

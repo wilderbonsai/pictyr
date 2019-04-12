@@ -3,16 +3,11 @@ import Layout from "components/layout"
 import sizeMe from 'react-sizeme';
 import Container from 'components/Container'
 import { Grid } from 'semantic-ui-react'
-
+import EditProfile from 'components/EditProfile'
 import { teal, purple } from 'const/colors'
 
-import Menu from 'components/Menu'
 
 class IndexPage extends Component {
-  state = {
-    selected: 'photographer',
-    color: 'teal'
-  }
 
 
   render() {
@@ -22,10 +17,10 @@ class IndexPage extends Component {
               <Grid stackable centered columns={2}>
                 <Grid.Column>
                   <h2>Your Profile</h2>
-                  <Menu />
+                  <EditProfile />
+
                 </Grid.Column>
               </Grid>
-
             </Container>
         </Layout>
     )

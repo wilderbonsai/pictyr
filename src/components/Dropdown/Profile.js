@@ -5,8 +5,7 @@ import { Dropdown, Image, Icon} from 'semantic-ui-react'
 
 
 const options = [
-  { key: 'user', text: 'Account', icon: 'user', onClick: () => {navigate('user/profile')} },
-  { key: 'settings', text: 'Settings', icon: 'settings' },
+  { key: 'user', text: 'Profile Settings', icon: 'user', onClick: () => {navigate('user/profile')} },
   { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
 ]
 

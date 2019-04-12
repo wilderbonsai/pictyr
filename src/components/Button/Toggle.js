@@ -17,14 +17,10 @@ const StyledButton = styled(Button)`
 
 class ToggleButton extends Component {
 
-  state = {
-    active : false
-  }
 
   handleClick = (e) => {
     const { onClick } = this.props
     e.preventDefault()
-    this.setState({ active: !this.state.active })
 
     if(onClick) {
       onClick(e);
@@ -32,7 +28,7 @@ class ToggleButton extends Component {
   }
 
   render() {
-    const { active } = this.state
+    const { active } = this.props
     return (<StyledButton {...this.props} toggle active={active} onClick={(e) => {this.handleClick(e)}}/>)
   }
 }

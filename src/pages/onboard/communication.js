@@ -71,7 +71,7 @@ class OnboardPage extends Component {
             <Grid stackable centered columns={2}>
               <Grid.Column>
                 <h1>Almost there.</h1>
-                <h2>Let us know your communication preferences.</h2>
+                <h2>Let us know your preferences.</h2>
                 <h3>Which apply to you?</h3>
                 <ToggleButton
                     fluid

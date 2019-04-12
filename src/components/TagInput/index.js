@@ -17,6 +17,8 @@ class DropdownExampleAllowAdditions extends Component {
     this.setState({options: tagOptions})
   }
 
+
+  //TODO create option from tags in another util file or somewhere
   getTagOptions = async () => {
     const { allowCreate } = this.props
     const tags = await getAllTags();
@@ -50,19 +52,20 @@ class DropdownExampleAllowAdditions extends Component {
 
   render() {
     const { currentValues } = this.state
-    const { allowCreate, sideButton, placeholder } = this.props
+    const { allowCreate, sideButton, placeholder, existingTags } = this.props
     return (
         <Form fluid simple size="large">
           <Button  as='div' labelPosition='left' fluid>
           <StyledDropdown
               options={this.state.options}
               placeholder={placeholder}
+              defaultValue={existingTags}
               search
               selection
               fluid
               multiple
               size="massive"
-              allowAdditions={allowCreate}
+              allowAdditions={true}
               value={currentValues}
               onAddItem={this.handleAddition}
               onChange={this.handleChange}
